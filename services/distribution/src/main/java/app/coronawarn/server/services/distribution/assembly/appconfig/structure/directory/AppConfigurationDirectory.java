@@ -23,6 +23,8 @@ package app.coronawarn.server.services.distribution.assembly.appconfig.structure
 import app.coronawarn.server.common.protocols.internal.ApplicationConfiguration;
 import app.coronawarn.server.common.protocols.internal.RiskScoreClassification;
 import app.coronawarn.server.common.protocols.internal.RiskScoreParameters;
+import app.coronawarn.server.common.protocols.internal.AttenuationDuration;
+import app.coronawarn.server.common.protocols.internal.ApplicationVersionConfiguration;
 import app.coronawarn.server.services.distribution.assembly.appconfig.ApplicationConfigurationProvider;
 import app.coronawarn.server.services.distribution.assembly.appconfig.UnableToLoadFileException;
 import app.coronawarn.server.services.distribution.assembly.appconfig.structure.archive.decorator.signing.AppConfigurationSigningDecorator;
@@ -42,9 +44,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Creates the directory structure {@code /parameters/country/:country} and writes two files. One containing {@link
- * RiskScoreParameters} and the another containing the {@link RiskScoreClassification}, wrapped in a signed zip
- * archive.
+ * Creates the directory structure {@code /configuration/country/:country} and writes the following five files,
+ * wrapped in a signed zip archive:
+ * 1. One containing minimum risk score
+ * 2. One containing {@link RiskScoreParameters}
+ * 3. One containing {@link RiskScoreClassification}
+ * 4. One containing {@link AttenuationDuration}
+ * 5. One containing {@link ApplicationVersionConfiguration}
  */
 public class AppConfigurationDirectory extends DirectoryOnDisk {
 
